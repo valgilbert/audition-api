@@ -6,9 +6,8 @@ plugins {
     id 'jacoco'
     id "com.github.spotbugs" version "5.0.14"
     id "io.freefair.lombok" version "8.0.1"
-    // TODO Enable checkstyle and PMD. Fix all the relevant issues.
-    //id "checkstyle"
-    //id "pmd"
+    id "checkstyle"
+    id "pmd"
 }
 
 group = 'com.audition'
@@ -17,8 +16,7 @@ sourceCompatibility = '17'
 targetCompatibility = '17'
 
 
-// TODO allow for code-analysis.gradle to be applied for code analysis.
-// apply from: 'config/code-analysis.gradle'
+apply from: 'config/code-analysis.gradle'
 
 configurations {
     compileOnly {
@@ -34,12 +32,22 @@ ext {
     set('springCloudVersion', "2022.0.1")
     set('logbackVersion', "1.4.5")
     set('slf4jVersion', "2.0.5")
+    set('mockitoVersion', "3.5.13")
+    set('jUnitVersion', "5.8.1")
+    set('hamCrestVersion', "1.3")
     set('springdocVersion', "2.0.2")
+    set('checkStyleVersion', "10.9.3")
+}
+
+checkstyle {
+    toolVersion = "${checkStyleVersion}"
+    configFile = "config/checkstyle/checkstyle.xml" as File
 }
 
 dependencies {
 
     // TODO Clean up unused dependencies. Add comments on consideration on any improvements you made.
+    // Not sure how todo this
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa"
     implementation "org.springframework.boot:spring-boot-starter-web"
@@ -57,10 +65,15 @@ dependencies {
     developmentOnly "org.springframework.boot:spring-boot-devtools"
     runtimeOnly "io.micrometer:micrometer-registry-prometheus"
 
-
     implementation "org.slf4j:slf4j-api:${slf4jVersion}"
     implementation "ch.qos.logback:logback-core:${logbackVersion}"
     implementation "ch.qos.logback:logback-classic:${logbackVersion}"
+
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${jUnitVersion}"
+    testImplementation "org.hamcrest:hamcrest-all:${hamCrestVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jUnitVersion}"
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "io.projectreactor:reactor-test"

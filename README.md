@@ -1,6 +1,7 @@
 # Audition API
 
-The purpose of this Spring Boot application is to test general knowledge of SpringBoot, Java, Gradle etc. It is created for hiring needs of our company but can be used for other purposes.
+The purpose of this Spring Boot application is to test general knowledge of SpringBoot, Java, Gradle etc. It is created
+for hiring needs of our company but can be used for other purposes.
 
 ## Overarching expectations & Assessment areas
 
@@ -20,7 +21,7 @@ This is meant to be used for job applications and MUST showcase your full skills
 - Proper error handling.
 - Ability to use and configure rest template. We allow for half-setup object mapper and rest template
 - Not all information in the Application is perfect. It is expected that a person would figure these out and correct.
-  
+
 ## Getting Started
 
 ### Prerequisite tooling
@@ -28,7 +29,7 @@ This is meant to be used for job applications and MUST showcase your full skills
 - Any Springboot/Java IDE. Ideally IntelliJIdea.
 - Java 17
 - Gradle 8
-  
+
 ### Prerequisite knowledge
 
 - Java
@@ -51,13 +52,14 @@ __Optional__
 
 ---
 **NOTE** -
-It is  highly recommended that the application be loaded and started up to avoid any issues.
+It is highly recommended that the application be loaded and started up to avoid any issues.
 
 ---
 
 ## Audition Application information
 
-This section provides information on the application and what the needs to be completed as part of the audition application.
+This section provides information on the application and what the needs to be completed as part of the audition
+application.
 
 The audition consists of multiple TODO statements scattered throughout the codebase. The applicants are expected to:
 
@@ -68,14 +70,53 @@ The audition consists of multiple TODO statements scattered throughout the codeb
 - Make sure the application if functional.
 
 ## Submission process
-Applicants need to do the following to submit their work: 
+
+Applicants need to do the following to submit their work:
+
 - Clone this repository
-- Complete their work and zip up the working application. 
-- Applicants then need to send the ZIP archive to the email of the recruiting manager. This email be communicated to the applicant during the recruitment process. 
+- Complete their work and zip up the working application.
+- Applicants then need to send the ZIP archive to the email of the recruiting manager. This email be communicated to the
+  applicant during the recruitment process.
 
   
 ---
+
 ## Additional Information based on the implementation
 
-This section MUST be completed by applicants. It allows applicants to showcase their view on how an application can/should be documented. 
-Applicants can choose to do this in a separate markdown file that needs to be included when the code is committed. 
+This REST API endpoints to retrieve posts and comments by a user.
+
+### Get Posts by UserId and keyword Request
+
+`GET /posts?userId=:userId&keyword=:keyword`
+
+http://localhost:8080/posts?userId=1&keyword=ut
+
+### Response
+
+[{"userId":1,"id":1,"title":"sunt aut ","body":"quia et "},{"userId":1,"id":2,"title":"qui est esse","body":"ut"}]
+
+---
+
+### Get Post by id Request
+
+`GET /posts/:id`
+
+http://localhost:8080/posts/1
+
+### Response
+
+{"userId":1,"id":1,"title":"sunt aut facere repellat provident occaecati excepturi optio reprehenderit","body":"quia et
+suscipit"}
+
+---
+
+### Get Comments by postId Request
+
+`GET /comments?postId=:postId`
+
+http://localhost:8080/comments?postId=1
+
+### Response
+
+[{"postId":1,"id":1,"name":"id labore ex et quam laborum","email":"Eliseo@gardner.biz","body":"laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus"},{"postId":1,"id":2,"name":"quo vero reiciendis velit similique earum","email":"Jayne_Kuhic@sydney.com","body":"est natus enim nihil est dolore omnis voluptatem numquam","email":"Nikita@garfield.biz","body":"quia molestiae reprehenderit quasi aspernatur"},{"postId":1,"id":4,"name":"alias odio sit","email":"Lew@alysha.tv","body":"non et atque\noccaecati deserunt "},{"postId":1,"id":5,"name":"vero eaque aliquid doloribus et culpa","email":"Hayden@althea.biz","body":"harum non quasi et ratione"}]
+
